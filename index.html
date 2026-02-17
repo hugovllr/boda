@@ -493,74 +493,109 @@
                 grid-template-columns: 1fr;
             }
 
-            .photo-gallery {
-                grid-template-columns: 1fr;
+            .photo-floating-container,
+            .photo-floating-container.reverse {
+                justify-content: center;
+            }
+
+            .photo-floating {
+                max-width: 100%;
+            }
+
+            .fade-in-left,
+            .fade-in-right {
+                transform: translateY(30px);
+            }
+
+            .fade-in-left.visible,
+            .fade-in-right.visible {
+                transform: translateY(0);
             }
         }
 
-        /* Photo Gallery */
-        .photo-gallery-section {
-            padding: 6rem 2rem;
+        /* Photo Floating Sections */
+        .photo-floating-section {
+            padding: 4rem 2rem;
             background: var(--light);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
-        .photo-gallery {
+        .photo-floating-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-floating-container {
             max-width: 1200px;
-            margin: 4rem auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
         }
 
-        .photo-card {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(139, 115, 85, 0.15);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-            aspect-ratio: 3/4;
+        .photo-floating-container.reverse {
+            justify-content: flex-end;
         }
 
-        .photo-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(139, 115, 85, 0.25);
-        }
-
-        .photo-card img {
+        .photo-floating {
+            max-width: 500px;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(139, 115, 85, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .photo-card::after {
+        .photo-floating:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 80px rgba(139, 115, 85, 0.3);
+        }
+
+        .photo-floating img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        /* Fade in animations from different directions */
+        .fade-in-left {
+            transform: translateX(-100px) translateY(30px);
+        }
+
+        .fade-in-left.visible {
+            transform: translateX(0) translateY(0);
+        }
+
+        .fade-in-right {
+            transform: translateX(100px) translateY(30px);
+        }
+
+        .fade-in-right.visible {
+            transform: translateX(0) translateY(0);
+        }
+
+        /* Decorative accents for photos */
+        .photo-floating::before {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40%;
-            background: linear-gradient(to top, rgba(62, 39, 35, 0.4), transparent);
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            border-radius: 30px;
+            z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .photo-card:hover::after {
-            opacity: 1;
-        }
-
-        /* Staggered animation for photo cards */
-        .photo-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-        .photo-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .photo-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-        .photo-card:nth-child(4) {
-            animation-delay: 0.4s;
+        .photo-floating:hover::before {
+            opacity: 0.3;
         }
 
         /* Decorative elements */
@@ -593,21 +628,11 @@
         <div class="announcement">¡Nos Casamos!</div>
     </section>
 
-    <!-- Photo Gallery Section -->
-    <section class="photo-gallery-section fade-in">
-        <h2 class="section-title">Nuestra Historia</h2>
-        <div class="photo-gallery">
-            <div class="photo-card">
-                <img src="foto1.jpeg" alt="Nuestra historia de amor">
-            </div>
-            <div class="photo-card">
-                <img src="foto2.jpeg" alt="Juntos para siempre">
-            </div>
-            <div class="photo-card">
-                <img src="foto3.jpeg" alt="Un amor único">
-            </div>
-            <div class="photo-card">
-                <img src="foto4.jpeg" alt="Caminando juntos">
+    <!-- Photo 1 - Floating -->
+    <section class="photo-floating-section fade-in-left">
+        <div class="photo-floating-container">
+            <div class="photo-floating">
+                <img src="foto1.jpeg" alt="Andrea & Leonel">
             </div>
         </div>
     </section>
@@ -620,6 +645,15 @@
             Y de nuestros padres
         </div>
         <div class="floral-accent">❀</div>
+    </section>
+
+    <!-- Photo 2 - Floating Right -->
+    <section class="photo-floating-section fade-in-right">
+        <div class="photo-floating-container reverse">
+            <div class="photo-floating">
+                <img src="foto2.jpeg" alt="Nuestro amor">
+            </div>
+        </div>
     </section>
 
     <!-- Events Section -->
@@ -656,6 +690,15 @@
         </div>
     </section>
 
+    <!-- Photo 3 - Floating Left -->
+    <section class="photo-floating-section fade-in-left">
+        <div class="photo-floating-container">
+            <div class="photo-floating">
+                <img src="foto3.jpeg" alt="Juntos por siempre">
+            </div>
+        </div>
+    </section>
+
     <!-- Dress Code Section -->
     <section class="dress-code fade-in">
         <h2 class="section-title">Código de Vestimenta</h2>
@@ -685,6 +728,15 @@
         <p class="gift-text">
             Tu presencia es nuestro mejor regalo, pero si deseas tener un detalle con nosotros, agradecemos tu contribución para nuestro nuevo hogar.
         </p>
+    </section>
+
+    <!-- Photo 4 - Floating Right -->
+    <section class="photo-floating-section fade-in-right">
+        <div class="photo-floating-container reverse">
+            <div class="photo-floating">
+                <img src="foto4.jpeg" alt="Caminando juntos">
+            </div>
+        </div>
     </section>
 
     <!-- Countdown Section -->
@@ -769,7 +821,8 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.fade-in').forEach(el => {
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .photo-floating-section').forEach(el => {
             observer.observe(el);
         });
 
