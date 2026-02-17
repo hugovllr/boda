@@ -508,7 +508,7 @@
             max-width: 1200px;
             margin: 4rem auto 0;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
@@ -547,6 +547,20 @@
 
         .photo-card:hover::after {
             opacity: 1;
+        }
+
+        /* Staggered animation for photo cards */
+        .photo-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+        .photo-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .photo-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+        .photo-card:nth-child(4) {
+            animation-delay: 0.4s;
         }
 
         /* Decorative elements */
@@ -589,6 +603,12 @@
             <div class="photo-card">
                 <img src="foto2.jpeg" alt="Juntos para siempre">
             </div>
+            <div class="photo-card">
+                <img src="foto3.jpeg" alt="Un amor único">
+            </div>
+            <div class="photo-card">
+                <img src="foto4.jpeg" alt="Caminando juntos">
+            </div>
         </div>
     </section>
 
@@ -618,7 +638,7 @@
                     Iglesia Nuestra Señora del Perpetuo Socorro<br>
                     San Diego, Cesar
                 </div>
-                <div class="event-time">5:00 PM</div>
+                <div class="event-time">4:30 PM</div>
                 <a href="#" class="btn">Ver ubicación</a>
             </div>
 
@@ -639,20 +659,20 @@
     <!-- Dress Code Section -->
     <section class="dress-code fade-in">
         <h2 class="section-title">Código de Vestimenta</h2>
-        <div class="blessing-text">Tropical Formal</div>
+        <div class="blessing-text">Formal</div>
         
         <div class="dress-grid">
             <div class="dress-card">
                 <div class="dress-icon">👗</div>
                 <h3 class="dress-title">Mujeres</h3>
-                <p class="dress-description">Vestido largo y colorido</p>
+                <p class="dress-description">Vestimenta Formal</p>
                 <a href="#" class="btn">Ver ideas</a>
             </div>
 
             <div class="dress-card">
                 <div class="dress-icon">👔</div>
                 <h3 class="dress-title">Hombres</h3>
-                <p class="dress-description">Guayabera blanca</p>
+                <p class="dress-description">Vestimenta Formal</p>
                 <a href="#" class="btn">Ver ideas</a>
             </div>
         </div>
@@ -705,13 +725,13 @@
 
     <!-- Footer -->
     <footer>
-        <p>María & Carlos • 21 de Junio, 2025</p>
+        <p>Andrea & Leonel • 18 de Abril, 2026</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">Con amor, esperamos verte en nuestro día especial</p>
     </footer>
 
     <script>
         // Countdown Timer
-        const weddingDate = new Date('2025-06-21T17:00:00').getTime();
+        const weddingDate = new Date('2026-04-18T16:30:00').getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
