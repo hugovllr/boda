@@ -299,6 +299,80 @@
             color: white;
         }
 
+        /* Welcome Overlay for Music */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(62, 39, 35, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .welcome-content {
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            max-width: 500px;
+        }
+
+        .welcome-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .welcome-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1.5rem 3rem;
+            font-size: 1.3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .play-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+        }
+
+        .play-button:active {
+            transform: scale(0.95);
+        }
+
+        .play-icon {
+            font-size: 2rem;
+        }
+
         /* Story Section */
         .story {
             padding: 4rem 2rem;
@@ -817,6 +891,18 @@
     </style>
 </head>
 <body>
+    <!-- Welcome Overlay -->
+    <div class="welcome-overlay" id="welcome-overlay">
+        <div class="welcome-content">
+            <h2 class="welcome-title">Andrea Carolina & Leonel</h2>
+            <p class="welcome-subtitle">¡Bienvenido a nuestra boda!</p>
+            <button class="play-button" id="play-button">
+                <span class="play-icon">▶️</span>
+                <span>Comenzar</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <!-- Decorative Frame -->
@@ -1074,6 +1160,70 @@
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
+        // Music Control
+        const musicControl = document.getElementById('music-control');
+        const musicIcon = document.querySelector('.music-icon');
+        const welcomeOverlay = document.getElementById('welcome-overlay');
+        const playButton = document.getElementById('play-button');
+        let isPlaying = false;
+        let audio = null;
+
+        // Create audio element
+        audio = new Audio();
+        audio.loop = true;
+        audio.volume = 0.5;
+        audio.src = 'musica.mp3';
+        audio.preload = 'auto';
+
+        // Function to play audio
+        function playAudio() {
+            audio.play().then(() => {
+                musicIcon.textContent = '🔊';
+                musicControl.classList.add('playing');
+                isPlaying = true;
+                console.log('Music playing successfully');
+            }).catch(error => {
+                console.log('Play failed:', error);
+                // If play fails, show the overlay again
+                welcomeOverlay.classList.remove('hidden');
+            });
+        }
+
+        // Function to pause audio
+        function pauseAudio() {
+            audio.pause();
+            musicIcon.textContent = '🎵';
+            musicControl.classList.remove('playing');
+            isPlaying = false;
+        }
+
+        // Play button in overlay (MAIN TRIGGER FOR MOBILE)
+        playButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Start playing
+            playAudio();
+            
+            // Hide overlay with delay
+            setTimeout(() => {
+                welcomeOverlay.classList.add('hidden');
+            }, 300);
+        });
+
+        // Toggle play/pause on music control button
+        musicControl.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!isPlaying) {
+                playAudio();
+            } else {
+                pauseAudio();
+            }
+        });
+
+        // Preload audio
+        audio.load();
+
         // Scroll animations
         const observerOptions = {
             threshold: 0.1,
@@ -1106,87 +1256,6 @@
                 }
             });
         });
-
-        // Music Control
-        const musicControl = document.getElementById('music-control');
-        const musicIcon = document.querySelector('.music-icon');
-        let isPlaying = false;
-        let audio = null;
-
-        // Create audio element
-        audio = new Audio();
-        audio.loop = true;
-        audio.volume = 0.5;
-        audio.src = 'musica.mp3';
-
-        // Function to play audio
-        function playAudio() {
-            if (!isPlaying) {
-                audio.play().then(() => {
-                    musicIcon.textContent = '🔊';
-                    musicControl.classList.add('playing');
-                    isPlaying = true;
-                }).catch(error => {
-                    console.log('Autoplay prevented, waiting for user interaction');
-                });
-            }
-        }
-
-        // Function to pause audio
-        function pauseAudio() {
-            audio.pause();
-            musicIcon.textContent = '🎵';
-            musicControl.classList.remove('playing');
-            isPlaying = false;
-        }
-
-        // Toggle play/pause on button click
-        musicControl.addEventListener('click', function(e) {
-            e.stopPropagation();
-            if (!isPlaying) {
-                playAudio();
-            } else {
-                pauseAudio();
-            }
-        });
-
-        // Try autoplay immediately
-        setTimeout(() => {
-            playAudio();
-        }, 500);
-
-        // AUTO-PLAY on ANY user interaction
-        let autoplayAttempted = false;
-        
-        function attemptAutoplay() {
-            if (!autoplayAttempted && !isPlaying) {
-                autoplayAttempted = true;
-                playAudio();
-            }
-        }
-
-        // Listen to multiple events for maximum compatibility
-        document.addEventListener('click', attemptAutoplay, { once: true });
-        document.addEventListener('touchstart', attemptAutoplay, { once: true });
-        document.addEventListener('touchend', attemptAutoplay, { once: true });
-        document.addEventListener('mousemove', attemptAutoplay, { once: true });
-        document.addEventListener('scroll', attemptAutoplay, { once: true });
-        document.addEventListener('keydown', attemptAutoplay, { once: true });
-        
-        // Also try on page visibility change
-        document.addEventListener('visibilitychange', function() {
-            if (!document.hidden && !isPlaying) {
-                playAudio();
-            }
-        });
-
-        // Show notification to click if music didn't start
-        setTimeout(() => {
-            if (!isPlaying) {
-                // Add pulsing animation to music button
-                musicControl.style.animation = 'pulse 1s infinite';
-            }
-        }, 2000);
     </script>
 </body>
 </html>
