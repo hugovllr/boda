@@ -2,7 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#8B7355">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Nuestra Boda - ¡Nos Casamos!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +37,28 @@
         /* Smooth scroll */
         html {
             scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Better touch targets for mobile */
+        a, button, .btn {
+            -webkit-tap-highlight-color: rgba(212, 175, 55, 0.3);
+            touch-action: manipulation;
+        }
+
+        /* Prevent text selection on buttons */
+        button, .btn, .music-control, .play-button {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Optimize images for mobile */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         /* Hero Section */
@@ -790,6 +815,290 @@
             .hero-corner {
                 width: 50px;
                 height: 50px;
+            }
+
+            /* Hero section mobile */
+            .hero {
+                padding: 1.5rem;
+                min-height: 100vh;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+            }
+
+            .hero-date {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+            }
+
+            /* Story section mobile */
+            .story {
+                padding: 3rem 1.5rem;
+            }
+
+            .story-text {
+                font-size: clamp(1rem, 3vw, 1.2rem);
+                line-height: 1.8;
+            }
+
+            .announcement {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+                margin-top: 2rem;
+            }
+
+            /* Parents section mobile */
+            .parents {
+                padding: 3rem 1.5rem;
+            }
+
+            .parents-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .parent-card {
+                padding: 1.5rem;
+            }
+
+            .parent-name {
+                font-size: 1.2rem;
+            }
+
+            /* Events section mobile */
+            .events {
+                padding: 3rem 1.5rem;
+            }
+
+            .events-container {
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .event-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .event-icon {
+                font-size: 2.5rem;
+            }
+
+            .event-title {
+                font-size: 1.5rem;
+            }
+
+            .event-details {
+                font-size: 1rem;
+            }
+
+            .event-time {
+                font-size: 1.3rem;
+            }
+
+            /* Dress code mobile */
+            .dress-code {
+                padding: 3rem 1.5rem;
+            }
+
+            .dress-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .dress-card {
+                padding: 1.5rem;
+            }
+
+            .dress-icon {
+                font-size: 3rem;
+            }
+
+            /* Gifts section mobile */
+            .gifts {
+                padding: 3rem 1.5rem;
+            }
+
+            .gift-icon {
+                font-size: 4rem;
+            }
+
+            .gift-text {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            /* Countdown mobile */
+            .countdown {
+                padding: 3rem 1.5rem;
+            }
+
+            .countdown-message {
+                font-size: 1rem;
+                line-height: 1.8;
+                padding: 0 0.5rem;
+            }
+
+            /* RSVP mobile */
+            .rsvp {
+                padding: 3rem 1.5rem;
+            }
+
+            .rsvp-text {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.95rem;
+            }
+
+            .btn-white {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            /* Section titles mobile */
+            .section-title {
+                font-size: clamp(2rem, 7vw, 3rem);
+                margin-bottom: 1.5rem;
+            }
+
+            .blessing-text {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                padding: 0 1rem;
+            }
+
+            /* Floral accents mobile */
+            .floral-accent {
+                font-size: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            /* Music control mobile */
+            .music-control {
+                width: 50px;
+                height: 50px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .music-icon {
+                font-size: 1.2rem;
+            }
+
+            /* Welcome overlay mobile */
+            .welcome-content {
+                padding: 1.5rem;
+            }
+
+            .welcome-title {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+
+            .welcome-subtitle {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+            }
+
+            .play-button {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.1rem;
+            }
+
+            .play-icon {
+                font-size: 1.5rem;
+            }
+
+            /* Photo floating sections mobile */
+            .photo-floating-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .photo-floating {
+                border-radius: 20px;
+                max-width: 100%;
+            }
+
+            /* Footer mobile */
+            footer {
+                padding: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            footer p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 1rem 0.5rem;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+
+            .countdown-label {
+                font-size: 0.75rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .story-text {
+                font-size: 0.95rem;
+            }
+
+            .event-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .play-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* Landscape mode mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 3rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .countdown-timer {
+                flex-wrap: nowrap;
+                gap: 0.5rem;
+            }
+
+            .countdown-item {
+                min-width: 60px;
+                padding: 1rem 0.5rem;
             }
         }
 
