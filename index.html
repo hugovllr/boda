@@ -339,6 +339,7 @@
             z-index: 9999;
             opacity: 1;
             transition: opacity 0.5s ease;
+            padding: 2rem;
         }
 
         .welcome-overlay.hidden {
@@ -351,6 +352,11 @@
             color: white;
             padding: 2rem;
             max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .welcome-title {
@@ -358,6 +364,7 @@
             font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
             color: var(--secondary);
+            text-align: center;
         }
 
         .welcome-subtitle {
@@ -365,6 +372,7 @@
             font-size: clamp(1.2rem, 3vw, 1.5rem);
             margin-bottom: 2rem;
             color: var(--accent);
+            text-align: center;
         }
 
         .play-button {
@@ -377,12 +385,14 @@
             font-weight: 500;
             border-radius: 50px;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 1rem;
             box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: pulse 2s infinite;
+            margin: 0 auto;
         }
 
         .play-button:hover {
@@ -992,21 +1002,30 @@
             }
 
             /* Welcome overlay mobile */
+            .welcome-overlay {
+                padding: 1rem;
+            }
+
             .welcome-content {
                 padding: 1.5rem;
+                max-width: 90%;
             }
 
             .welcome-title {
                 font-size: clamp(1.8rem, 8vw, 2.5rem);
+                margin-bottom: 1rem;
             }
 
             .welcome-subtitle {
                 font-size: clamp(1rem, 4vw, 1.3rem);
+                margin-bottom: 1.5rem;
             }
 
             .play-button {
                 padding: 1.2rem 2.5rem;
                 font-size: 1.1rem;
+                width: auto;
+                min-width: 200px;
             }
 
             .play-icon {
