@@ -64,6 +64,119 @@
             animation: float 20s ease-in-out infinite;
         }
 
+        /* Decorative wedding elements */
+        .hero::after {
+            content: '🌿';
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .hero-decoration.top-right {
+            top: 8%;
+            right: 8%;
+            animation: float 18s ease-in-out infinite 2s;
+        }
+
+        .hero-decoration.bottom-left {
+            bottom: 10%;
+            left: 8%;
+            animation: float 16s ease-in-out infinite 4s;
+        }
+
+        .hero-decoration.bottom-right {
+            bottom: 12%;
+            right: 10%;
+            animation: float 14s ease-in-out infinite 6s;
+        }
+
+        /* Decorative border frame */
+        .hero-frame {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            right: 5%;
+            bottom: 5%;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+
+        .hero-frame::before,
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-frame::before {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+            border-top-left-radius: 20px;
+        }
+
+        .hero-frame::after {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+            border-bottom-right-radius: 20px;
+        }
+
+        /* Corner decorations */
+        .hero-corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            pointer-events: none;
+        }
+
+        .hero-corner.top-left {
+            top: 4%;
+            left: 4%;
+            border-top: 3px solid rgba(212, 175, 55, 0.3);
+            border-left: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-left-radius: 20px;
+        }
+
+        .hero-corner.top-right {
+            top: 4%;
+            right: 4%;
+            border-top: 3px solid rgba(212, 175, 55, 0.3);
+            border-right: 3px solid rgba(212, 175, 55, 0.3);
+            border-top-right-radius: 20px;
+        }
+
+        .hero-corner.bottom-left {
+            bottom: 4%;
+            left: 4%;
+            border-bottom: 3px solid rgba(212, 175, 55, 0.3);
+            border-left: 3px solid rgba(212, 175, 55, 0.3);
+            border-bottom-left-radius: 20px;
+        }
+
+        .hero-corner.bottom-right {
+            bottom: 4%;
+            right: 4%;
+            border-bottom: 3px solid rgba(212, 175, 55, 0.3);
+            border-right: 3px solid rgba(212, 175, 55, 0.3);
+            border-bottom-right-radius: 20px;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0) scale(1); }
             50% { transform: translateY(-20px) scale(1.05); }
@@ -149,6 +262,43 @@
             color: var(--primary);
         }
 
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(139, 115, 85, 0.4);
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .music-icon {
+            font-size: 1.5rem;
+            color: white;
+        }
+
         /* Story Section */
         .story {
             padding: 4rem 2rem;
@@ -156,6 +306,8 @@
             margin: 0 auto;
             background: var(--cream);
             position: relative;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 175, 55, 0.03) 35px, rgba(212, 175, 55, 0.03) 70px);
         }
 
         .story::before {
@@ -203,6 +355,8 @@
             padding: 4rem 2rem;
             background: var(--light);
             text-align: center;
+            background-image: radial-gradient(circle, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
         .blessing-text {
@@ -212,6 +366,37 @@
             margin: 2rem auto;
             max-width: 700px;
             line-height: 1.8;
+        }
+
+        /* Parents Cards */
+        .parents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 3rem auto;
+        }
+
+        .parent-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(139, 115, 85, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .parent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 115, 85, 0.15);
+        }
+
+        .parent-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            font-weight: 600;
+            line-height: 1.6;
         }
 
         /* Event Details */
@@ -308,6 +493,10 @@
         .dress-code {
             padding: 4rem 2rem;
             background: var(--cream);
+            background-image: 
+                linear-gradient(30deg, rgba(139, 115, 85, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(139, 115, 85, 0.04) 87.5%, rgba(139, 115, 85, 0.04)),
+                linear-gradient(150deg, rgba(139, 115, 85, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(139, 115, 85, 0.04) 87.5%, rgba(139, 115, 85, 0.04));
+            background-size: 80px 80px;
         }
 
         .dress-grid {
@@ -355,6 +544,10 @@
             padding: 4rem 2rem;
             background: linear-gradient(135deg, var(--light) 0%, var(--cream) 100%);
             text-align: center;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 115, 85, 0.06) 0%, transparent 50%),
+                linear-gradient(135deg, var(--light) 0%, var(--cream) 100%);
         }
 
         .gift-icon {
@@ -375,6 +568,8 @@
             padding: 4rem 2rem;
             background: var(--light);
             text-align: center;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(139, 115, 85, 0.02) 50px, rgba(139, 115, 85, 0.02) 51px);
         }
 
         .countdown-message {
@@ -511,12 +706,25 @@
             .fade-in-right.visible {
                 transform: translateY(0);
             }
+
+            /* Hide decorative elements on mobile for cleaner look */
+            .hero-decoration,
+            .hero-frame {
+                display: none;
+            }
+
+            .hero-corner {
+                width: 50px;
+                height: 50px;
+            }
         }
 
         /* Photo Floating Sections */
         .photo-floating-section {
             padding: 2rem 2rem;
             background: var(--light);
+            background-image: radial-gradient(rgba(212, 175, 55, 0.04) 2px, transparent 2px);
+            background-size: 40px 40px;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease, transform 1s ease;
@@ -611,9 +819,23 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Decorative Frame -->
+        <div class="hero-frame"></div>
+        
+        <!-- Corner Decorations -->
+        <div class="hero-corner top-left"></div>
+        <div class="hero-corner top-right"></div>
+        <div class="hero-corner bottom-left"></div>
+        <div class="hero-corner bottom-right"></div>
+        
+        <!-- Floral Decorations -->
+        <div class="hero-decoration top-right">🌸</div>
+        <div class="hero-decoration bottom-left">💐</div>
+        <div class="hero-decoration bottom-right">🌺</div>
+        
         <div class="hero-content">
             <div class="hero-subtitle">Nos complace invitarte a celebrar</div>
-            <h1>Andrea<span class="ampersand">&</span>Leonel</h1>
+            <h1>Andrea Carolina <span class="ampersand">&</span> Leonel</h1>
             <div class="decorative-line"></div>
             <div class="hero-date">18 de abril, 2026</div>
         </div>
@@ -623,7 +845,7 @@
     <!-- Story Section -->
     <section class="story fade-in">
         <div class="story-text">
-            Nuestra historia comenzó con una amistad sincera. Desde el primer momento en que nos conocimos, sentimos una conexión especial que trascendía el tiempo y el espacio. Juntos hemos crecido, aprendiendo el uno del otro, siempre con Dios iluminando nuestro camino. Hoy celebramos la realización de nuestro mayor sueño. Tras compartir risas, lágrimas, desafíos y momentos de inmensa felicidad, estamos listos para escribir el siguiente capítulo de nuestra historia.
+            Hay encuentros que nos cambian la vida en un instante y el nuestro fue uno de ellos. Desde el primer momento en que nos conocimos, sentimos una conexión especial que trascendía el tiempo y el espacio. Juntos hemos crecido, aprendiendo el uno del otro, siempre con Dios iluminando nuestro camino. Hoy celebramos la realización de uno de nuestros mayores sueños. Tras compartir risas, lágrimas, desafíos y momentos de inmensa felicidad, estamos listos para escribir el siguiente capítulo de nuestra historia.
         </div>
         <div class="announcement">¡Nos Casamos!</div>
     </section>
@@ -632,7 +854,7 @@
     <section class="photo-floating-section fade-in-left">
         <div class="photo-floating-container">
             <div class="photo-floating">
-                <img src="foto5.jpg" alt="Andrea & Leonel">
+                <img src="foto1.jpg" alt="Andrea & Leonel">
             </div>
         </div>
     </section>
@@ -644,6 +866,19 @@
         <div class="blessing-text">
             Y la bendición de nuestras familias
         </div>
+        
+        <div class="parents-grid">
+            <div class="parent-card">
+                <p class="parent-name">Francisco Ramón<br>Villero Arzuaga</p>
+            </div>
+            <div class="parent-card">
+                <p class="parent-name">Nelis del Carmen<br>González López</p>
+            </div>
+            <div class="parent-card">
+                <p class="parent-name">Esperanza<br>Sánchez Vanegas</p>
+            </div>
+        </div>
+        
         <div class="floral-accent">❀</div>
     </section>
 
@@ -669,7 +904,7 @@
                 <div class="event-icon">⛪</div>
                 <h3 class="event-title">Ceremonia</h3>
                 <div class="event-details">
-                    Iglesia Nuestra Señora del Perpetuo Socorro<br>
+                    18 de abril de 2026<br>
                     San Diego, Cesar
                 </div>
                 <div class="event-time">4:30 PM</div>
@@ -681,11 +916,12 @@
                 <div class="event-icon">🥂</div>
                 <h3 class="event-title">Recepción</h3>
                 <div class="event-details">
-                    Casa campo, Villa María<br>
-                    Valledupar, Cesar
+                    Calle 3 # 5 - 42<br>
+                    (Donde Ruby)<br>
+                    San Diego, Cesar
                 </div>
-                <div class="event-time">7:00 PM</div>
-                <a href="#" class="btn">Ver ubicación</a>
+                <div class="event-time">6:30 PM</div>
+                <a href="https://www.google.com/maps/place/Cl.+3+%23+5-42,+San+Diego,+Cesar/@10.3370482,-73.1800044,19.09z/data=!4m6!3m5!1s0x8e8aa3582a325fed:0x70589a559cf4276a!8m2!3d10.3371479!4d-73.179529!16s%2Fg%2F11m62rgb2j?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn">Ver ubicación</a>
             </div>
         </div>
     </section>
@@ -717,14 +953,14 @@
                 <div class="dress-icon">👗</div>
                 <h3 class="dress-title">Mujeres</h3>
                 <p class="dress-description">Vestimenta Formal</p>
-                <a href="#" class="btn">Ver ideas</a>
+                <a href="https://es.pinterest.com/search/pins/?rs=typed&q=Vestido%20fiesta%20mujer" target="_blank" class="btn">Ver ideas</a>
             </div>
 
             <div class="dress-card">
                 <div class="dress-icon">👔</div>
                 <h3 class="dress-title">Hombres</h3>
                 <p class="dress-description">Vestimenta Formal</p>
-                <a href="#" class="btn">Ver ideas</a>
+                <a href="https://es.pinterest.com/search/pins/?q=hombres%20vestidos%20formales%20casual&rs=ac&len=23&source_id=ac_VkLd358S&eq=vestidos%20hombres%20formal&etslf=10766" target="_blank" class="btn">Ver ideas</a>
             </div>
         </div>
     </section>
@@ -733,7 +969,7 @@
     <section class="photo-floating-section fade-in-left">
         <div class="photo-floating-container">
             <div class="photo-floating">
-                <img src="foto1.jpg" alt="Un momento especial">
+                <img src="foto5.jpg" alt="Un momento especial">
             </div>
         </div>
     </section>
@@ -769,7 +1005,7 @@
     <section class="countdown fade-in">
         <h2 class="section-title">El Gran Día</h2>
         <p class="countdown-message">
-            Los momentos más especiales de nuestras vidas cobran un significado único cuando los compartimos con quienes amamos. Tú has sido parte importante de nuestra historia de amor, y por eso queremos que nos acompañes en este día tan especial. Tu presencia lo hará inolvidable.
+            Los momentos más felices de la vida se multiplican cuando se comparten. Nos encantaría que nos acompañes en el inicio de esta nueva etapa y seas testigo del amor que nos une. Tu presencia hará este día aún más especial.
         </p>
         
         <div class="countdown-timer">
@@ -798,12 +1034,17 @@
         <p class="rsvp-text">
             Te pedimos confirmar tu asistencia antes del 1 de abril. ¡Nos encantará celebrar este momento contigo!
         </p>
-        <a href="#" class="btn btn-white">Confirmar Asistencia</a>
+        <a href="https://api.whatsapp.com/send?phone=573152823034&text=Hola!%20%22Escribo%20para%20confirmar%20la%20asistencia%20a%20la%20boda%20de%20Andrea%20y%20Leonel%22" target="_blank" class="btn btn-white">Confirmar Asistencia</a>
     </section>
+
+    <!-- Music Control Button -->
+    <div class="music-control" id="music-control">
+        <span class="music-icon">🎵</span>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <p> Andrea  & Leonel • 18 de Abril, 2026</p>
+        <p>Andrea Carolina & Leonel • 18 de Abril, 2026</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">Con todo nuestro amor, te esperamos en este día tan importante</p>
     </footer>
 
@@ -865,6 +1106,87 @@
                 }
             });
         });
+
+        // Music Control
+        const musicControl = document.getElementById('music-control');
+        const musicIcon = document.querySelector('.music-icon');
+        let isPlaying = false;
+        let audio = null;
+
+        // Create audio element
+        audio = new Audio();
+        audio.loop = true;
+        audio.volume = 0.5;
+        audio.src = 'musica.mp3';
+
+        // Function to play audio
+        function playAudio() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    musicIcon.textContent = '🔊';
+                    musicControl.classList.add('playing');
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('Autoplay prevented, waiting for user interaction');
+                });
+            }
+        }
+
+        // Function to pause audio
+        function pauseAudio() {
+            audio.pause();
+            musicIcon.textContent = '🎵';
+            musicControl.classList.remove('playing');
+            isPlaying = false;
+        }
+
+        // Toggle play/pause on button click
+        musicControl.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (!isPlaying) {
+                playAudio();
+            } else {
+                pauseAudio();
+            }
+        });
+
+        // Try autoplay immediately
+        setTimeout(() => {
+            playAudio();
+        }, 500);
+
+        // AUTO-PLAY on ANY user interaction
+        let autoplayAttempted = false;
+        
+        function attemptAutoplay() {
+            if (!autoplayAttempted && !isPlaying) {
+                autoplayAttempted = true;
+                playAudio();
+            }
+        }
+
+        // Listen to multiple events for maximum compatibility
+        document.addEventListener('click', attemptAutoplay, { once: true });
+        document.addEventListener('touchstart', attemptAutoplay, { once: true });
+        document.addEventListener('touchend', attemptAutoplay, { once: true });
+        document.addEventListener('mousemove', attemptAutoplay, { once: true });
+        document.addEventListener('scroll', attemptAutoplay, { once: true });
+        document.addEventListener('keydown', attemptAutoplay, { once: true });
+        
+        // Also try on page visibility change
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden && !isPlaying) {
+                playAudio();
+            }
+        });
+
+        // Show notification to click if music didn't start
+        setTimeout(() => {
+            if (!isPlaying) {
+                // Add pulsing animation to music button
+                musicControl.style.animation = 'pulse 1s infinite';
+            }
+        }, 2000);
     </script>
 </body>
 </html>
